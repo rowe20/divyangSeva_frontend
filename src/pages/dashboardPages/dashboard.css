@@ -1,0 +1,21 @@
+.disable_img{
+    width: 500px;
+    height:500px;
+}
+
+.profile_img{
+    width:100px;
+    height:100px;
+}
+.signature_img{
+    width: 200px;
+    height:200px;
+}
+main {
+    background: #f3f4f6;
+    grid-area: main;
+    overflow-y: auto;
+  }
+  .main__container {
+    padding: 20px 35px;
+  }
