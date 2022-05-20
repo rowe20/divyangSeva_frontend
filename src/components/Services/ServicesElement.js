@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ServicesContainer = styled.div`
+export const ServicesContainer = styled.section`
 &&&{height:800px;
 display:flex;
 flex-direction: column;

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import './signIn.css'
 import { Container,
   Row,
   Col,
@@ -10,11 +10,9 @@ import { Container,
   Label,
   Input,
   Button,
-  Card,
-  CardBody,
-  CardText
   
   } from 'reactstrap'
+import SignInOutHero from '../HeroSection/SignInOutHero';
 const Login = () => {
 
   let navigate = useNavigate();
@@ -51,52 +49,44 @@ const authenticate = () =>{
     <Container >
     <Row>
       <Col xs="3" md='1'/>
-      <Col xs="auto" md='auto' className='justify-content-center'>
-      <Card
-        body
-        inverse
-        style={{
-          backgroundColor: 'rgba(0,0,0,0)',
-          borderColor: 'rgba(0,0,0,0)',
-        }}
-      >
-        <CardText className="text-center">
-            Please enter your credentials
-        </CardText>
-        <CardBody>
-        <Form>
-          <FormGroup>
-            <Label for="exampleEmail">
-              Email
-            </Label>
-            <Input
-              id="Email"
-              name="email"
-              placeholder="email"
-              type="email"
-              value={email}
-              onChange={(e)=>setemail(e.target.value)}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="examplePassword">
-              Password
-            </Label>
-            <Input
-              id="examplePassword"
-              name="password"
-              placeholder="password"
-              type="password"
-              value={password}
-              onChange={(e)=>setpassword(e.target.value)}
-            />
-          </FormGroup>
-              <Button onClick={authenticate} color='success'>
-                Login
-              </Button>
-          </Form>
-        </CardBody>
-      </Card>
+      <Col xs="12" md='auto'>
+          <Form>
+            <FormGroup className="text-center">
+              <Label for="exampleEmail">
+                Email
+              </Label>
+              <Input
+                id="Email"
+                name="email"
+                placeholder="email"
+                type="email"
+                value={email}
+                onChange={(e)=>setemail(e.target.value)}
+              />
+            </FormGroup>
+            <FormGroup className="text-center">
+              <Label for="examplePassword">
+                Password
+              </Label>
+              <Input
+                id="examplePassword"
+                name="password"
+                placeholder="password"
+                type="password"
+                value={password}
+                onChange={(e)=>setpassword(e.target.value)}
+              />
+            </FormGroup>
+            <Container style={{
+              display:'flex',
+              justifyContent:'center'
+            }}>
+                <Button className="text-center" onClick={authenticate} color='success'>
+                  Login
+                </Button>
+            </Container>
+            </Form>
+          
       
       </Col>
       <Col xs="3" md='1'/>

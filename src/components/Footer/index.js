@@ -23,12 +23,10 @@ const Footer = () => {
                         
                     </FooterLinkItems>
                     <FooterLinkItems>
-                        <FooterLinkTitle>About Us</FooterLinkTitle>
+                        <FooterLinkTitle>Contact Us</FooterLinkTitle>
                             
-                            <FooterLink to="/signin">How it Works</FooterLink>
-                            <FooterLink to="/signin">Testimonials</FooterLink>
-                            <FooterLink to="/signin">Careers</FooterLink>
-                            <FooterLink to="/signin">Terms of Service</FooterLink>
+                            <FooterLink to="/signin">Email : Divyangseva@gmail.com</FooterLink>
+                            <FooterLink to="/signin">Helpline No : +919999999999</FooterLink>
                         
                     </FooterLinkItems>
                 </FooterLinksWrapper>

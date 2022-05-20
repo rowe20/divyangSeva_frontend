@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const InfoContainer = styled.div`
+export const InfoContainer = styled.section`
 &&&{color:#fff;
 background: ${({lightBg})=> (lightBg ? '#f9f9f9' : '#010606')};
 
@@ -9,7 +9,7 @@ background: ${({lightBg})=> (lightBg ? '#f9f9f9' : '#010606')};
 }}
 `
 
-export const InfoWrapper = styled.div`
+export const InfoWrapper = styled.section`
 &&&{display:grid;
 z-index:1;
 height:860px;
@@ -21,7 +21,7 @@ padding: 0 24px;
 justify-content: center;}
 `
 
-export const InfoROw = styled.div`
+export const InfoROw = styled.section`
 &&&{display:grid;
 grid-auto-columns: minmax(auto,1fr);
 align-items: center;
@@ -32,18 +32,18 @@ grid-template-areas:${({imgStart})=>(imgStart ? `'col2 col1'`:`'col1 col2'`)};
 }}
 `
 
-export const Column1 = styled.div`
+export const Column1 = styled.section`
 &&&{margin-bottom:15px;
 padding: 0 15px;
 grid-area: col1;}
 `
-export const Column2 = styled.div`
+export const Column2 = styled.section`
 &&&{margin-bottom:15px;
 padding: 0 15px;
 grid-area: col2;}
 `
 
-export const TextWrapper = styled.div`
+export const TextWrapper = styled.article`
 &&&{max-width:540px;
 padding-top:0;
 padding-bottom:60px;}
@@ -79,11 +79,11 @@ line-height:24px;
 color: ${({darkText})=>(darkText ? '#010606': '#fff')};}
 ` 
 
-export const BtnWrap = styled.div`
+export const BtnWrap = styled.section`
 &&&{display:flex;
 justify-content:flex-start;}
 `
-export const ImgWrap = styled.div`
+export const ImgWrap = styled.section`
 &&&{max-width:555px;
 height:100%;}
 `

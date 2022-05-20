@@ -23,7 +23,7 @@ z-index:10;
 }
 `
 
-export const NavbarContainer = styled.div`
+export const NavbarContainer = styled.section`
 &&&
 {display:flex;
 justify-content:space-between;
@@ -48,7 +48,7 @@ text-decoration: none;
 }
 `
 
-export const MobileIcon = styled.div`
+export const MobileIcon = styled.section`
 &&&{display: none;
 
 @media screen and (max-width: 768px){
@@ -65,7 +65,7 @@ export const MobileIcon = styled.div`
 
 export const NavMenu = styled.ul`
 &&&{display:flex;
-align-items:center;
+
 list-style:none;
 text-align:center;
 margin-right: -22px;
@@ -104,7 +104,7 @@ text-decoration:none;
 padding:0 1rem;
 height: 100%;
 cursor: pointer;
-font-size: 1.5em;
+font-size: 1.2em;
 font-weight: 600;
 
 
@@ -141,4 +141,50 @@ text-decoration:none;
     color:#010606;
 }}
 
+`
+export const NavWeather = styled.section`
+color: #fff;
+justify-self:flex-start;
+cursor:none;
+font-size:0.5rem;
+display:flex;
+align-items:center;
+margin-left:10px;
+font-weight:bold;
+text-decoration: none;
+
+@media screen and (max-width:768px){
+    display:none;
+
+}}
+}
+`
+
+export const NavWeatherH1 = styled.h1`
+color:#fff;
+text-align:center;
+font-size: 0.9rem;
+`
+export const NavWeatherSection = styled.section`
+
+`
+export const NavWeatherImg = styled.img`
+float:left;
+height:40px;
+width:40px;
+`
+export const NavWeatherReport = styled.article`
+float:right;
+display:grid;
+grid-template-columns:auto;
+`
+export const NavWeatherTemp = styled.h4`
+grid-area:1 / 1;
+font-size:1.0rem;
+font-weight:bold;
+`
+export const NavWeatherRow = styled.article`
+grid-area:2 / 1;
+font-size:0.7rem;
+height:-10px;
 `

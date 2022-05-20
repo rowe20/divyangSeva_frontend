@@ -4,6 +4,7 @@ import Video from '../../videos/video.mp4'
 import { Button } from '../ButtonElement'
 import Login from '../SignIn'
 import { SignContext } from '../../context/SignContext'
+import SignUp from '../SignUp'
 
 const SignInOutHero = () => {
     const [hover, sethover] = useState(false)
@@ -20,19 +21,15 @@ const SignInOutHero = () => {
             <VideoBg autoPlay loop muted src={Video} type='video/mp4'/>
         </HeroBg>
         <HeroContent>
-            <HeroH1>Sign In</HeroH1>
+            {signStatuscheck.signStatus ==="signin"&&<HeroH1>Sign In</HeroH1>}
+            {signStatuscheck.signStatus ==="signup"&&<HeroH1>Sign Up</HeroH1>}
+            
             <HeroP>
                 Let's Get You Started!
             </HeroP>
-            {signStatuscheck.signStatus ==="signin"&&<Login/>}
-            {signStatuscheck.signStatus ==="signup"&&<h1>signup</h1>}
             {/* <Login/> */}
-            
-            {/* <HeroBtnWrapper>
-                <Button to="signup" onMouseEnter={onHover} OnMouseLeave={onHover} primary="true" dark='true'>
-                    Get started {hover ? <ArrowForward/>:<ArrowRight/> }
-                </Button>
-            </HeroBtnWrapper> */}
+            {signStatuscheck.signStatus ==="signin"&&<Login/>}
+            {signStatuscheck.signStatus ==="signup"&&<SignUp/>}
         </HeroContent>
     </HeroContainer>
   )

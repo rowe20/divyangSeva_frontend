@@ -13,7 +13,14 @@ import { Nav,
     NavItem,
     NavLinks,
     NavBtn,
-    NavBtnLink 
+    NavBtnLink, 
+    NavWeather,
+    NavWeatherH1,
+    NavWeatherSection,
+    NavWeatherImg,
+    NavWeatherReport,
+    NavWeatherRow,
+    NavWeatherTemp
   } from './NavbarElements'
 
 
@@ -77,17 +84,29 @@ const changeSignComponent =(status)=>{
             <NavLinks  to='services' smooth={true} duration={500} spy={true} exact='true' offset={-80}>Services</NavLinks>
           </NavItem>
           <NavItem>
-            <NavLinks to='signup' smooth={true} duration={500} spy={true} exact='true' offset={-80}>Sign Up</NavLinks>
+            <NavLinks to='help' smooth={true} duration={500} spy={true} exact='true' offset={-80}>Help</NavLinks>
           </NavItem>
         </NavMenu>
         <NavBtn>
           {/* //try OnClick */}
           {/*  onClick={() => changeSignComponent(1)} */}
-          <NavBtnLink onClick={() => changeSignComponent("signin")} to="/signin" >Sign In</NavBtnLink>
+          <NavBtnLink onClick={() => changeSignComponent("signin")} to="/signin" >Log In</NavBtnLink>
         </NavBtn>
         <NavBtn>
-          <NavBtnLink onClick={() => changeSignComponent("signup")} to="/signin">Sign Up</NavBtnLink>
+          <NavBtnLink onClick={() => changeSignComponent("signup")} to="/signin">Register</NavBtnLink>
         </NavBtn>
+        <NavWeather>
+          {/* <NavWeatherH1>Weather</NavWeatherH1> */}
+          <NavWeatherSection>
+            <NavWeatherImg src='//cdn.weatherapi.com/weather/64x64/day/116.png'></NavWeatherImg>
+            <NavWeatherReport>
+              <NavWeatherTemp>36.5<span>&#8451;</span>
+              <NavWeatherRow>Pune</NavWeatherRow>
+              </NavWeatherTemp>
+              
+            </NavWeatherReport>
+          </NavWeatherSection>
+        </NavWeather>
       </NavbarContainer>
     </Nav>
     </>

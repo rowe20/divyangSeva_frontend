@@ -24,7 +24,7 @@ export const CloseIcon = styled(FaTimes)`
 &&&{color:#fff;}
 `
 
-export const Icon = styled.div`
+export const Icon = styled.section`
 &&&{position:absolute;
 top:1.2rem;
 right:1.5rem;
@@ -34,7 +34,7 @@ cursor:pointer;
 outline:none;}
 `
 
-export const SidebarWrapper = styled.div`
+export const SidebarWrapper = styled.section`
 &&&{color:#fff;}
 `
 
@@ -43,6 +43,7 @@ export const SidebarMenu = styled.ul`
 grid-template-columns:1fr;
 grid-template-rows:repeat(6, 80px);
 text-align:center;
+padding-left:0rem;
 
 @media screen and (max-width:480px){
     grid-template-rows:repeat(6,60px);
@@ -68,7 +69,7 @@ cursor:pointer;
 }}
 `
 
-export const SideBtnWrap = styled.div`
+export const SideBtnWrap = styled.section`
 &&&{display:flex;
 justify-content:center;}
 `

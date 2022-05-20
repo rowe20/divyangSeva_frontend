@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect, useContext } from 'react'
 import {FaBars} from 'react-icons/fa'
 import {animateScroll as scroll} from 'react-scroll'
 import { Nav,
@@ -11,6 +11,7 @@ import { Nav,
      NavBtn,
      NavBtnLink 
    } from './NavbarElements'
+   import { SignContext } from '../../context/SignContext'
 
 
 const SignInOutNav = ({toggle}) => {
@@ -25,6 +26,21 @@ const SignInOutNav = ({toggle}) => {
         setscrollNav(false)
     }
     //settextColor(!textColor)
+    }
+
+    const signStatuscheck = useContext(SignContext);
+    console.log(signStatuscheck.signStatus)
+    const changeSignComponent =(status)=>{
+      if(status === "signin")
+      {
+        signStatuscheck.setsignStatus("signin")
+        console.log(signStatuscheck.signStatus);
+      }
+      else{
+        signStatuscheck.setsignStatus("signup")
+        console.log(signStatuscheck.signStatus);
+      }
+    
     }
 
     useEffect(()=>{
@@ -49,7 +65,9 @@ const SignInOutNav = ({toggle}) => {
           </NavItem>
         </NavMenu>
         <NavBtn>
-          <NavBtnLink to="/signin">Sign In</NavBtnLink>
+        {signStatuscheck.signStatus ==="signin"&&<NavBtnLink onClick={() => changeSignComponent("signup")} to="/signin">Sign Up</NavBtnLink>}
+        {signStatuscheck.signStatus ==="signup"&&<NavBtnLink onClick={() => changeSignComponent("signin")} to="/signin">Sign In</NavBtnLink>}
+          
         </NavBtn>
       </NavbarContainer>
     </Nav>
