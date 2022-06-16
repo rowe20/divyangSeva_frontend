@@ -12,7 +12,8 @@ export const homeObjOne = {
     alt:'Car',
     dark:true,
     primary:true,
-    darkText:false
+    darkText:false,
+    link:'/'
 }; 
 
 export const homeObjTwo = {
@@ -29,7 +30,8 @@ export const homeObjTwo = {
     alt:'Car',
     dark:false,
     primary:false,
-    darkText:true
+    darkText:true,
+    link:'/paralympics'
 }; 
 
 export const homeObjThree = {
@@ -46,5 +48,6 @@ export const homeObjThree = {
     alt:'Contact Us',
     dark:false,
     primary:false,
-    darkText:true
+    darkText:true,
+    link:'/'
 }; 

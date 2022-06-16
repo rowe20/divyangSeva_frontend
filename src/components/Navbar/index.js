@@ -1,9 +1,10 @@
+import axios from 'axios'
 import React,{ useEffect, useState } from 'react'
 import {FaBars} from 'react-icons/fa'
-// import { useNavigate } from 'react-router-dom'
 import {animateScroll as scroll} from 'react-scroll'
 import { SignContext } from '../../context/SignContext'
-
+import {ToastContainer,toast,Zoom,Bounce} from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css"
 
 import { Nav,
    NavbarContainer,
@@ -15,7 +16,6 @@ import { Nav,
     NavBtn,
     NavBtnLink, 
     NavWeather,
-    NavWeatherH1,
     NavWeatherSection,
     NavWeatherImg,
     NavWeatherReport,
@@ -27,6 +27,23 @@ import { Nav,
 
 const Navbar = ({toggle}) => {
 const [scrollNav, setscrollNav] = useState(false)
+const [city, setcity] = useState({
+  cityname:"pune"
+})
+
+const [temp, settemp] = useState({
+  img:"",
+  temp_c:""
+})
+
+
+// useEffect(() => {
+//   // axios.post("/api/weather",city)
+//   // .then((res)=>{
+//   //   settemp({...temp,temp_c: res.data.data.current.temp_c,img: res.data.data.current.condition.icon});
+//   // })
+// }, [])
+
 
 const changeNav = ()=>{
   if(window.scrollY >= 80){
@@ -48,23 +65,42 @@ const toggleHome = () =>{
 };
 
 
-// const navigate = useNavigate();
+
 const signButton = React.useContext(SignContext);
+const signStatuscheck = React.useContext(SignContext);
+
+
+
 const changeSignComponent =(status)=>{
   if(status === "signin")
   {
-    signButton.setsignStatus("signin")
-    console.log(signButton.signStatus);
+    signButton.setsignStatus("signin")  
   }
   else{
     signButton.setsignStatus("signup")
-    console.log(signButton.signStatus);
+    
   }
 
 }
+const logout = () => {
+  changeSignComponent("");
+
+  toast.success("Loggged Out Succesfully",{
+    position:toast.POSITION.BOTTOM_CENTER,
+    autoClose: 2000,
+    transition:Zoom,
+  });
+
+  setTimeout(()=>{
+    localStorage.setItem("signStatus","")
+    window.location.reload();
+  },3000); 
+}
+
 
   return (
     <>
+    <ToastContainer/>
     <Nav scrollNav={scrollNav}>
       <NavbarContainer>
         <NavLogo to='/' onClick={toggleHome}>
@@ -87,20 +123,25 @@ const changeSignComponent =(status)=>{
             <NavLinks to='help' smooth={true} duration={500} spy={true} exact='true' offset={-80}>Help</NavLinks>
           </NavItem>
         </NavMenu>
+        {(signStatuscheck.signStatus ==="" || localStorage.getItem("signStatus") === "")&&<>
         <NavBtn>
-          {/* //try OnClick */}
-          {/*  onClick={() => changeSignComponent(1)} */}
           <NavBtnLink onClick={() => changeSignComponent("signin")} to="/signin" >Log In</NavBtnLink>
         </NavBtn>
         <NavBtn>
           <NavBtnLink onClick={() => changeSignComponent("signup")} to="/signin">Register</NavBtnLink>
+        </NavBtn></>}
+
+        {(signStatuscheck.signStatus ==="loggedin"|| localStorage.getItem("signStatus") === "loggedin" )&&<>
+        <NavBtn>
+          <NavBtnLink onClick={() =>logout()} to="/">Logout</NavBtnLink>
         </NavBtn>
+        </>}
+        
         <NavWeather>
-          {/* <NavWeatherH1>Weather</NavWeatherH1> */}
           <NavWeatherSection>
-            <NavWeatherImg src='//cdn.weatherapi.com/weather/64x64/day/116.png'></NavWeatherImg>
+            <NavWeatherImg src={temp.img}></NavWeatherImg>
             <NavWeatherReport>
-              <NavWeatherTemp>36.5<span>&#8451;</span>
+              <NavWeatherTemp>{temp.temp_c}<span>&#8451;</span>
               <NavWeatherRow>Pune</NavWeatherRow>
               </NavWeatherTemp>
               

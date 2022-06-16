@@ -1,7 +1,12 @@
 import axios from 'axios';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { useNavigate,Redirect } from 'react-router-dom';
 import './signIn.css'
+import { SignContext } from '../../context/SignContext'
+import { UserRoleContext } from '../../context/UserRoleContext';
+import { DashboardNavbarContext } from '../../context/DashboardNavbarContext';
+import {ToastContainer,toast,Zoom,Bounce} from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css"
 import { Container,
   Row,
   Col,
@@ -13,9 +18,17 @@ import { Container,
   
   } from 'reactstrap'
 import SignInOutHero from '../HeroSection/SignInOutHero';
+
+
+
+
 const Login = () => {
 
-  let navigate = useNavigate();
+  const signstatusCheck = useContext(SignContext);
+  const userRoleStatus = useContext(UserRoleContext);
+  const dashboardNavbar = useContext(DashboardNavbarContext);
+  const navigate = useNavigate();
+  
   const [email, setemail] = useState("")
   const [password, setpassword]= useState("")
 
@@ -24,33 +37,73 @@ const Login = () => {
   password:password
 };
 
-const authenticate = () =>{
-  axios.post("http://localhost:8080/api/user/login",user)
-  .then((res)=>{
-    console.log(res.data.name);
-    if(res.data.name !== 'NULL'){
-
-      alert("welcome "+res.data.name);
-      console.log(res.data);
-      localStorage.setItem("name",res.data.name);
-      navigate("/");
-    }
-    else{
-      alert("Username or Password Invalid");
-      setemail("");
-      setpassword("");
-    }
+const authenticate = async(e) =>{
+    e.preventDefault();
     
-  })
+    await axios.post("http://localhost:8080/api/user/login",user)
+    .then((res)=>{
+      // console.log(res.data);
+      if(res.status === 200){
+
+        if(res.data.user_type === ("Police"))
+        {
+          localStorage.setItem("userRole","admin");
+          localStorage.setItem("signStatus","loggedin")
+          signstatusCheck.setsignStatus("loggedin")
+          userRoleStatus.setuserRole("admin");
+        }
+        else if (res.data.user_type ==="USER")
+        {
+          toast.success(res.data.message,{
+            position:toast.POSITION.BOTTOM_CENTER,
+            autoClose: 2000,
+            transition:Zoom,
+          });
+          localStorage.setItem("userRole","user");
+          localStorage.setItem("userName",res.data.name);
+          localStorage.setItem("userEmail",res.data.email);
+          localStorage.setItem("userToken",res.data.token);
+          userRoleStatus.setuserRole("user");
+
+          setTimeout(()=>{
+          localStorage.setItem("signStatus","loggedin");
+          signstatusCheck.setsignStatus("loggedin");
+          navigate("/dashboard");
+
+          },3000);
+          
+        }
+        else{
+          toast.warning("Wrong Username or Password",{
+            position:toast.POSITION.BOTTOM_CENTER
+          });
+          setemail("");
+          setpassword("");
+        }
+      }
+      else{
+        toast.warning("Something went wrong please try again later!",{
+          position:toast.POSITION.BOTTOM_CENTER
+        });
+        setemail("");
+        setpassword("");
+      }
+    })
 }
 
 
   return (
+    <>
+    <ToastContainer
+      draggable={false}
+      transition={Zoom}
+      autoClose={2000}
+    />
     <Container >
     <Row>
       <Col xs="3" md='1'/>
       <Col xs="12" md='auto'>
-          <Form>
+          <Form onSubmit={authenticate}>
             <FormGroup className="text-center">
               <Label for="exampleEmail">
                 Email
@@ -62,6 +115,7 @@ const authenticate = () =>{
                 type="email"
                 value={email}
                 onChange={(e)=>setemail(e.target.value)}
+                required
               />
             </FormGroup>
             <FormGroup className="text-center">
@@ -75,13 +129,14 @@ const authenticate = () =>{
                 type="password"
                 value={password}
                 onChange={(e)=>setpassword(e.target.value)}
+                required
               />
             </FormGroup>
             <Container style={{
               display:'flex',
               justifyContent:'center'
             }}>
-                <Button className="text-center" onClick={authenticate} color='success'>
+                <Button className="text-center" type='submit' color='success'>
                   Login
                 </Button>
             </Container>
@@ -92,6 +147,7 @@ const authenticate = () =>{
       <Col xs="3" md='1'/>
     </Row>
   </Container>
+  </>
   )
 }
 

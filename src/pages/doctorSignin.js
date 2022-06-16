@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import Asidebar from '../components/Sidebar/Asidebar'
 import Footer from '../components/Footer'
 import SignInOutNav from '../components/Navbar/SignInOutNav'
-import SignInOutHero from '../components/HeroSection/SignInOutHero'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import DoctorLoginHero from '../components/HeroSection/DoctorLoginHero'
 
-
-
-const SigninPage = () => {
-  const [isOpen, setisOpen] = useState(false)
+const DoctorSignin = () => {
+    const [isOpen, setisOpen] = useState(false)
+    const [signStatus, setsignStatus] = useState("signin")
 
 
     const toggle = () =>{
@@ -19,11 +18,11 @@ const SigninPage = () => {
     <>
     <Asidebar isOpen={isOpen} toggle={toggle}/>
      <SignInOutNav toggle={toggle}/>
-     <SignInOutHero/>
+     <DoctorLoginHero signStatus={signStatus} setsignStatus={setsignStatus}/>
      
      <Footer/>
     </>
   )
 }
 
-export default SigninPage
+export default DoctorSignin

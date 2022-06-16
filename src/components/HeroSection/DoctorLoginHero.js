@@ -1,38 +1,42 @@
-import React,{useContext, useState} from 'react'
+import React,{useContext, useEffect, useState} from 'react'
 import { ArrowForward, ArrowRight, HeroBg, HeroBtnWrapper, HeroContainer, HeroContent, HeroH1, HeroP, VideoBg } from './HeroElement'
-import Video from '../../videos/video.mp4'
+import Video from '../../videos/8.mp4'
 import { Button } from '../ButtonElement'
 import Login from '../SignIn'
-import { SignContext } from '../../context/SignContext'
+import DoctorLogin  from '../SignIn/DoctorLogin'
+
 import SignUp from '../SignUp'
 
 
-const SignInOutHero = () => {
+const DoctorLoginHero = (props) => {
     const [hover, sethover] = useState(false)
-    
-    const signStatuscheck = useContext(SignContext);
+    let {signStatus,setsignstatus} = props
+    console.log(signStatus);
     
     const onHover = () =>{
         sethover(!hover)
     }
+    
+    
+
   return (
     <HeroContainer>
         <HeroBg>
             <VideoBg autoPlay loop muted src={Video} type='video/mp4'/>
         </HeroBg>
         <HeroContent>
-            {signStatuscheck.signStatus ==="signin"&&<HeroH1>Log In</HeroH1>}
-            {signStatuscheck.signStatus ==="signup"&&<HeroH1>Sign Up</HeroH1>}
+            {signStatus ==="signin"&&<HeroH1>Log In</HeroH1>}
+            {signStatus ==="signup"&&<HeroH1>Sign Up</HeroH1>}
             
-            <HeroP>
+            {/* <HeroP>
                 Let's Get You Started!
-            </HeroP>
+            </HeroP> */}
             {/* <Login/> */}
-            {signStatuscheck.signStatus ==="signin"&&<Login/>}
-            {signStatuscheck.signStatus ==="signup"&&<SignUp/>}
+            {signStatus ==="signin"&&<DoctorLogin/>}
+            {signStatus ==="signup"&&<SignUp/>}
         </HeroContent>
     </HeroContainer>
   )
 }
 
-export default SignInOutHero
+export default DoctorLoginHero

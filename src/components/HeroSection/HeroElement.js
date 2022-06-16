@@ -18,8 +18,8 @@ z-index:1;
     left:0;
     right:0;
     bottom:0;
-    background:#0c0c0cab;,
-    linear-gradient(180deg,rgba(0,0,0,0.2)0%, transparent 100%);
+    background:#0c0c0cab;
+    //linear-gradient(180deg,rgba(0,0,0,0.2)0%, transparent 100%);
     z-index:2;
 }}
 `
@@ -36,6 +36,14 @@ overflow:hidden;}
 `
 
 export const VideoBg = styled.video`
+&&&{width:100%;
+height:100%;
+-o-object-fit:cover;
+object-fit:cover;
+background:#232a34;
+}
+`
+export const ImageBg = styled.img`
 &&&{width:100%;
 height:100%;
 -o-object-fit:cover;

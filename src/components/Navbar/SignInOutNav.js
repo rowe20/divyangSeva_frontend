@@ -25,20 +25,17 @@ const SignInOutNav = ({toggle}) => {
     else{
         setscrollNav(false)
     }
-    //settextColor(!textColor)
     }
 
     const signStatuscheck = useContext(SignContext);
-    console.log(signStatuscheck.signStatus)
+ 
     const changeSignComponent =(status)=>{
       if(status === "signin")
       {
-        signStatuscheck.setsignStatus("signin")
-        console.log(signStatuscheck.signStatus);
+        signStatuscheck.setsignStatus("signin") 
       }
       else{
         signStatuscheck.setsignStatus("signup")
-        console.log(signStatuscheck.signStatus);
       }
     
     }
